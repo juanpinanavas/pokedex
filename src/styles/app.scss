@@ -1,0 +1,26 @@
+$red: #F22539;
+$white: #fff;
+$fontFamily: Lato;
+
+h1 {
+  font-family: $fontFamily;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+}
+label {
+  font-family: $fontFamily;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 150%;
+  text-align: center;
+}
+
+.poke-red {
+  background: $red;
+  border-radius: 60px;
+  color: $white;
+}
