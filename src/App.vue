@@ -13,4 +13,11 @@
   padding-top: 35px;
   padding-bottom: $bottomBarHeight + 20px;
 }
+
+@media only screen and (max-width: 630px) {
+  #app {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
 </style>

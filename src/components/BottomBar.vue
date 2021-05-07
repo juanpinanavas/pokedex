@@ -70,4 +70,10 @@ export default {
     }
   }
 }
+
+@media only screen and (max-width: 630px) {
+  .bottom-bar-container {
+    padding: 0 30px;
+  }
+}
 </style>

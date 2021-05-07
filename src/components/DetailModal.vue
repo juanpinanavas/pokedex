@@ -90,7 +90,7 @@ export default {
 }
 
 .modal-container {
-  min-width: 315px;
+  min-width: 300px;
   max-width: 570px;
   margin: 0px auto;
   background-color: #fff;
@@ -159,15 +159,6 @@ export default {
   }
 }
 
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
 .modal-enter {
   opacity: 0;
 }
@@ -180,5 +171,12 @@ export default {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+@media only screen and (max-width: 630px) {
+  .modal-container {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 </style>

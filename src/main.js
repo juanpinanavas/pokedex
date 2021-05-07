@@ -11,5 +11,8 @@ new Vue({
   router,
   store,
   render: h => h(App),
-  el: '#app'
+  el: '#app',
+  mounted() {
+    this.$router.push({ name: 'home' }).catch(()=>{})
+  }
 })
