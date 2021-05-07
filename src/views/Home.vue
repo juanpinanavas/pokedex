@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <loading v-if="loading"/>
-    <div class="home-container" v-else>
+    <loading v-show="loading"/>
+    <div class="home-container" v-show="!loading">
       <div class="header">
         <img src="../assets/svg/pikachu.svg">
       </div>
@@ -15,7 +15,7 @@
 </template>
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex'
-import Loading from '../components/Loading'
+import Loading from '@/components/Loading'
 export default {
   name: 'Home',
   components: { Loading },

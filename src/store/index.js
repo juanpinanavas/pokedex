@@ -62,6 +62,11 @@ export default new Vuex.Store({
     setFilterByFavorites(state) {
       state.filterByFavorites = true
       state.filterByAll = false
+    },
+    setPokemon(state, payload) {
+      state.pokemonList = state.pokemonList.map(pokemon => {
+        return pokemon.name === payload.name ? payload : pokemon
+      })
     }
   },
   actions: {
@@ -71,6 +76,14 @@ export default new Vuex.Store({
       const pokemonList = await pokemonService.getPokemonsList()
       if (pokemonList)
         commit('setPokemonList', pokemonList)
+    },
+    async requestPokemon({ commit }, payload) {
+      const client = new HTTPClientWrapper()
+      const pokemonService = new PokemonService(client)
+      const pokemon = await pokemonService.getPokemon(payload)
+      if (pokemon)
+        commit('setPokemon', pokemon)
+      return pokemon
     }
   }
 })

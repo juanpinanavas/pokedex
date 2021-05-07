@@ -20,12 +20,17 @@ export default class PokemonService {
     }
   }
 
-  async getPokemon(name) {
+  async getPokemon(pokemon) {
     try {
-      const url = `https://pokeapi.co/api/v2/pokemon/${name}`
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
       const response = await this.client.makeJsonRequest(url)
-      return response.results.map(pokemon => {
-        return new Pokemon(pokemon)
+      return new Pokemon({
+        name: response.name, 
+        weight: response.weight, 
+        height: response.height, 
+        types: response.types, 
+        image: response.sprites.other.dream_world.front_default, 
+        url: url
       })
     } catch (error) {
       console.error(error)

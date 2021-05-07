@@ -1,38 +1,36 @@
 <template>
   <div class="list-component">
-    <div class="pokemon-list" v-if="existsAnyPokemon">
+    <div class="pokemon-list">
       <div class="item" v-for="(pokemon, index) in getPokemonList" 
-        :key="index"
-        @click="toggleFavorite(pokemon)">
+        @click="openDetails(pokemon)"
+        :key="index">
         <div class="name" v-text="pokemon.name"></div>
-        <div class="favorite">
+        <div class="favorite" @click.stop="toggleFavorite(pokemon)">
           <star :active="isFavorite(pokemon)" />
         </div>
       </div>
     </div>
-    <go-back-home v-else />
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import Star from '@/components/Star'
-import GoBackHome from '@/components/GoBackHome'
 export default {
-  components: { Star, GoBackHome },
+  components: { Star },
   methods: {
     ...mapMutations(['toggleFavorite']),
     isFavorite(pokemon) {
       return this.favorites.find(favorite => {
         return favorite.name == pokemon.name
       })
+    },
+    openDetails(pokemon) {
+      this.$emit('openDetails', pokemon)
     }
   },
   computed: {
     ...mapState(['favorites']),
-    ...mapGetters(['getPokemonList']),
-    existsAnyPokemon() {
-      return this.getPokemonList.length > 0
-    }
+    ...mapGetters(['getPokemonList'])
   }
 }
 </script>

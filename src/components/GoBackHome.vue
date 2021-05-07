@@ -9,9 +9,10 @@
 import { mapMutations } from 'vuex'
 export default {
   methods: {
-    ...mapMutations(['setFilterSearch']),
+    ...mapMutations(['setFilterSearch', 'setFilterByAll']),
     goBackHome() {
       this.setFilterSearch('')
+      this.setFilterByAll()
       this.$router.push({ name: 'home' })
     },
   },
