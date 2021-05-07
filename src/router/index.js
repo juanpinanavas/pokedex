@@ -1,31 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import List from '../views/List.vue'
-import Favorites from '../views/Favorites.vue'
-import Detail from '../views/Detail.vue'
+import Home from '../views/Home'
+import List from '../views/List'
+import Favorites from '../views/Favorites'
+import Detail from '../views/Detail'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
     path: '/list',
-    name: 'List',
+    name: 'list',
     component: List
   },
   {
     path: '/favorites',
-    name: 'Favorites',
+    name: 'favorites',
     component: Favorites
   },
   {
-    path: '/Detail',
-    name: 'Detail',
+    path: '/detail',
+    name: 'detail',
     component: Detail
   },
 ]

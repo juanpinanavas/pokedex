@@ -3,3 +3,14 @@
     <router-view/>
   </section>
 </template>
+<style lang="scss">
+@import "./styles/app.scss";
+
+#app {
+  max-width: 570px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 35px;
+  padding-bottom: $bottomBarHeight + 20px;
+}
+</style>

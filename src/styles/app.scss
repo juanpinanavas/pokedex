@@ -1,6 +1,18 @@
 $red: #F22539;
 $white: #fff;
+$gray: #BFBFBF;
 $fontFamily: Lato;
+$siteBackgroundColor: #F9F9F9;
+$bottomBarHeight: 80px;
+
+html {
+  max-height: calc(100vh - $bottomBarHeight);
+  overflow-y: auto;
+}
+
+body {
+  background-color: $siteBackgroundColor;
+}
 
 h1 {
   font-family: $fontFamily;
@@ -19,8 +31,24 @@ label {
   text-align: center;
 }
 
-.poke-red {
-  background: $red;
-  border-radius: 60px;
-  color: $white;
+.btn-poke {
+  border-radius: 60px !important;
+  color: $white !important;
+  height: 44px;
+
+  &.red {
+    background: $red !important;
+  }
+  &.gray {
+    background: $gray !important;
+  }
+}
+
+@keyframes rotation {
+  from { 
+    transform: rotate(0deg); 
+  }
+  to { 
+    transform: rotate(359deg); 
+  }
 }
