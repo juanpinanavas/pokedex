@@ -10,24 +10,17 @@
         </div>
       </div>
     </div>
-    <div v-else class="go-back-home">
-      <h1 class="title">Uh-oh!</h1>
-      <p class="description">You look lost on your journey!</p>
-      <button @click="goBackHome" class="ui button btn-poke red go-back-home">Go back home</button>
-    </div>
+    <go-back-home v-else />
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import Star from '@/components/Star'
+import GoBackHome from '@/components/GoBackHome'
 export default {
-  components: { Star },
+  components: { Star, GoBackHome },
   methods: {
-    ...mapMutations(['toggleFavorite', 'setFilterSearch']),
-    goBackHome() {
-      this.setFilterSearch('')
-      this.$router.push({ name: 'home' })
-    },
+    ...mapMutations(['toggleFavorite']),
     isFavorite(pokemon) {
       return this.favorites.find(favorite => {
         return favorite.name == pokemon.name
@@ -64,14 +57,6 @@ export default {
   .favorite {
     position: absolute;
     right: 10px;
-  }
-}
-.go-back-home {
-  .title {
-    font-size: 36px;
-  }
-  .description {
-    font-size: 20px;
   }
 }
 </style>

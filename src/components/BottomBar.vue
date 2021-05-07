@@ -2,13 +2,13 @@
   <footer class="bottom-bar-component">
     <div class="bottom-bar-container">
       <div class="all">
-        <button class="ui button btn-poke red filter">
+        <button :class="filterClass(filterByAll)" @click="setFilterByAll">
           <img class="icon" src="../assets/svg/all.svg">
           All
         </button>
       </div>
       <div class="favorites">
-        <button class="ui button btn-poke red filter">
+        <button :class="filterClass(filterByFavorites)" @click="setFilterByFavorites">
           <img class="icon" src="../assets/svg/star.svg">
           Favorites
         </button>
@@ -16,6 +16,20 @@
     </div>
   </footer>
 </template>
+<script>
+import { mapState, mapMutations } from 'vuex'
+export default {
+  methods: {
+    ...mapMutations(['setFilterByAll', 'setFilterByFavorites']),
+    filterClass(condition) {
+      return `ui button btn-poke ${condition ? 'red' : 'gray'} filter`
+    }
+  },
+  computed: {
+    ...mapState(['filterByAll', 'filterByFavorites'])
+  }
+}
+</script>
 <style lang="scss" scoped>
 @import "../styles/app.scss";
 .bottom-bar-component {

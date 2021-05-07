@@ -10,16 +10,26 @@ export default new Vuex.Store({
     loading: false,
     pokemonList: [],
     favorites: [],
-    filterSearch: ''
+    filterSearch: '',
+    filterByAll: true,
+    filterByFavorites: false
   },
   getters: {
-    getPokemonList(state) {
-      return state.pokemonList.filter(pokemon => {
-        if (state.filterSearch.trim().length > 0) {
+    getPokemonList(state) {      
+      const pokemonList = state.pokemonList.filter(pokemon => {
+        if (state.filterSearch.trim().length > 0)
           return pokemon.name.includes(state.filterSearch.trim())
-        }
         return true
       })
+      if (state.filterByAll)
+        return pokemonList
+      if (state.filterByFavorites) {
+        return pokemonList.filter(pokemon => {
+          return state.favorites.find(favorite => {
+            return favorite.name === pokemon.name
+          })
+        })
+      }
     }
   },
   mutations: {
@@ -44,6 +54,14 @@ export default new Vuex.Store({
     },
     setFilterSearch(state, payload) {
       state.filterSearch = payload
+    },
+    setFilterByAll(state) {
+      state.filterByAll = true
+      state.filterByFavorites = false
+    },
+    setFilterByFavorites(state) {
+      state.filterByFavorites = true
+      state.filterByAll = false
     }
   },
   actions: {
