@@ -9,16 +9,18 @@ export default new Vuex.Store({
   state: {
     loading: false,
     pokemonList: [],
-    favorites: []
+    favorites: [],
+    filterSearch: ''
   },
   getters: {
-    getFavoritesList(state) {
+    getPokemonList(state) {
       return state.pokemonList.filter(pokemon => {
-        return state.favorites.includes(favorite => {
-          favorite.name == pokemon.name
-        })
+        if (state.filterSearch.trim().length > 0) {
+          return pokemon.name.includes(state.filterSearch.trim())
+        }
+        return true
       })
-    },
+    }
   },
   mutations: {
     setLoading(state, isLoading) {
@@ -27,24 +29,21 @@ export default new Vuex.Store({
     setPokemonList(state, payload) {
       state.pokemonList = payload
     },
-    addFavorite(state, payload) {
-      state.favoritesList = payload
-    },
-    deleteFavorite(state, payload) {
-      state.favoritesList = payload
-    },
     toggleFavorite(state, payload) {
-      let hasFavorite = state.pokemonList.includes(favorite => {
+      const favoriteExists = state.favorites.find(favorite => {
         return favorite.name == payload.name
       })
-      if (hasFavorite) {
-        state.favorites.filter(favorite => {
-          favorite.name !== payload.name
+      if (favoriteExists) {
+        state.favorites = state.favorites.filter(favorite => {
+          return favorite.name !== payload.name
         })
       } else {
         state.favorites.push(payload)
       }
 
+    },
+    setFilterSearch(state, payload) {
+      state.filterSearch = payload
     }
   },
   actions: {
